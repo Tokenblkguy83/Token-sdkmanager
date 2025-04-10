@@ -9,19 +9,24 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v2
+    - name: Set up JDK
+      uses: actions/setup-java@v3
       with:
-        python-version: '3.x'
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        distribution: 'zulu'
+        java-version: '11'
+    - name: Cache Gradle Wrapper
+      uses: actions/cache@v3
+      with:
+        path: ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-wrapper-
+    - name: Build with Gradle
+      run: ./gradlew build
     - name: Run tests
-      run: |
-        python -m unittest discover
+      run: ./gradlew test
     - name: Deploy
       if: success()
       run: |
-        echo "Deploying the project..."
+        echo "Deploying the Android project..."
         # Add your deployment commands here

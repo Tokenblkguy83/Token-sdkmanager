@@ -30,7 +30,11 @@ public class MainActivity extends AppCompatActivity {
         installButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String packageName = packageNameInput.getText().toString();
+                String packageName = packageNameInput.getText().toString().trim();
+                if(packageName.isEmpty()){
+                    outputTextView.setText("Please enter a valid package name.");
+                    return;
+                }
                 installPackage(packageName);
             }
         });

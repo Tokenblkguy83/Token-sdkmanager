@@ -29,7 +29,7 @@ To reverse engineer the SDK packages, run the following command:
 sdkmanager --reverse-engineer
 ```
 
-This will trigger the reverse engineering process and provide you with the necessary information to reverse engineer the SDK packages.
+This will trigger the reverse engineering process and produce a comprehensive overview of the SDK packages. Specifically, it outputs structural details, dependency graphs, version information, and relevant metadata about the packages. Note that certain internal API configurations and sensitive details may be summarized or omitted for confidentiality.
 
 ## Android Project
 
