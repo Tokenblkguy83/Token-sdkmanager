@@ -1,0 +1,2 @@
+rootProject.name = "SDKManager"
+include ':app'
